@@ -46,8 +46,7 @@ public class RepositorioProductoMysql implements RepositorioProducto {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("nombre", producto.getNombre());
         paramSource.addValue("precio", producto.getPrecio());
-        Long idProductoGuardado = this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
-        return idProductoGuardado;
+        return this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
     }
 
     @Override

@@ -11,12 +11,6 @@ import java.sql.SQLException;
 @Component
 public class MapeoDescuento implements RowMapper<Descuento>, MapperResult {
 
- 
-
-    public MapeoDescuento() {
-        
-    }
-
     @Override
     public Descuento mapRow(ResultSet resultSet, int rowNum) throws SQLException {
         Integer id = resultSet.getInt("id");

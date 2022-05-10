@@ -41,8 +41,7 @@ public class RepositorioPedidoMysql implements RepositorioPedido {
         paramSource.addValue("id_descuento", pedido.getIdDescuento());
         paramSource.addValue("precio_total", pedido.getPrecioTotal());
         paramSource.addValue("precio_base", pedido.getPrecioBase());
-        Long idProductoGuardado = this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
-        return Integer.parseInt(idProductoGuardado.toString());
+        return Integer.parseInt(this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear).toString());
     }
 
     @Override

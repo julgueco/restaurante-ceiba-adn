@@ -47,8 +47,7 @@ public class RepositorioDescuentoMysql implements RepositorioDescuento {
         paramSource.addValue("cantidad_dias", descuento.getCantidadDias());
         paramSource.addValue("porcentaje", descuento.getPorcentaje());
         paramSource.addValue("activo", descuento.getActivo());
-        Long idDescuentoGuardado = this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
-        return idDescuentoGuardado;
+        return this.customNamedParameterJdbcTemplate.crear(paramSource, sqlCrear);
     }
 
     @Override
