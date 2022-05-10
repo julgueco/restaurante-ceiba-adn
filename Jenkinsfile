@@ -41,7 +41,7 @@ pipeline {
       steps{
         echo "------------>Compile & Unit Tests<------------"
 sh 'chmod +x microservicio/gradlew'
-sh './gradlew --b ./microservicio/build.gradle test'
+sh 'microservicio/gradlew --b microservicio/build.gradle test'
 
       }
     }
@@ -54,7 +54,7 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
         }
 		sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:restaurante-ceiba-adn-julian.guerrero', 
         sonarName:'CeibaAdn-restaurante-ceiba-adn(julian.guerrero)', 
-        sonarPathProperties:'./microservicio/sonar-project.properties')
+        sonarPathProperties:'microservicio/sonar-project.properties')
 
       }
     }
@@ -62,7 +62,7 @@ sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallat
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-		sh './gradlew --b ./microservicio/build.gradle build -x test'
+		sh 'microservicio/gradlew --b microservicio/build.gradle build -x test'
       }
     }
 
