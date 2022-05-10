@@ -20,6 +20,7 @@ import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -50,10 +51,10 @@ public class ServicioPedido {
         Cliente cliente = this.validarCliente(idCliente);
 
         Pedido pedido;
-        if (this.validarFinSemana(new Date()) && precioTotal.compareTo(this.precioBaseFinSemana) == -1) {
+        if (this.validarFinSemana(new Date()) && precioTotal.compareTo(this.precioBaseFinSemana) < 0) {
             precioTotal = this.precioBaseFinSemana;
             pedido = new Pedido(idCliente, precioTotal, true);
-        } else if (precioTotal.compareTo(this.precioBaseSemana) == -1) {
+        } else if (precioTotal.compareTo(this.precioBaseSemana) < 0) {
             precioTotal = this.precioBaseSemana;
             pedido = new Pedido(idCliente, precioTotal, true);
         } else {
@@ -81,9 +82,13 @@ public class ServicioPedido {
             pedido.agregarDescuento(descuentoAplicar.getId(), descuentoAplicar.getPorcentaje());
         }
 
-        Descuento ultimoDescuento = descuentosActivos.stream().max(Comparator.comparing(Descuento::getCantidadDias)).get();
-        if (ultimoDescuento.getCantidadDias().equals(cliente.getCantidadDias())) {
-            cliente.reiniciarCantidadDias();
+        Optional<Descuento> optinoal = descuentosActivos.stream().max(Comparator.comparing(Descuento::getCantidadDias));
+        if (optinoal.isPresent()) {
+            Descuento ultimoDescuento = optinoal.get();
+
+            if (ultimoDescuento.getCantidadDias().equals(cliente.getCantidadDias())) {
+                cliente.reiniciarCantidadDias();
+            }
         }
     }
 

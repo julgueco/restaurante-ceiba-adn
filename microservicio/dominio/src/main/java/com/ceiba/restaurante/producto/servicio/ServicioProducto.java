@@ -32,7 +32,7 @@ public class ServicioProducto {
         ValidadorArgumento.validarDecimal(producto.getPrecio().toString(), "No existe un precio para el producto");
 
         List<Producto> listProducto = repositorioProducto.obtenerTodos();
-        if (listProducto != null && listProducto.stream().anyMatch(prod -> producto.getNombre().toUpperCase().equals(prod.getNombre().toUpperCase()))) {
+        if (listProducto != null && listProducto.stream().anyMatch(prod -> producto.getNombre().equalsIgnoreCase(prod.getNombre()))) {
             throw new ExcepcionDuplicidad("Nombre de producto existente");
         }
         return repositorioProducto.guardar(producto);

@@ -4,8 +4,6 @@
  */
 package com.ceiba.restaurante.pedido.modelo.entidad;
 
-import java.math.BigDecimal;
-
 /**
  *
  * @author julian.guerrero
