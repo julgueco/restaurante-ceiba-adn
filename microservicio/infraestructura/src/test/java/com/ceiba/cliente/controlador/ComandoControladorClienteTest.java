@@ -5,8 +5,7 @@
 package com.ceiba.cliente.controlador;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.factura.controlador.RespuestaCliente;
-import com.ceiba.restaurante.controlador.ComandoControladorCliente;
+import com.ceiba.restaurante.cliente.controlador.ComandoControladorCliente;
 import com.ceiba.restaurante.cliente.comando.ComandoCliente;
 import com.ceiba.restaurante.cliente.modelo.entidad.Cliente;
 import com.ceiba.restaurante.cliente.puerto.repositorio.RepositorioCliente;
@@ -57,7 +56,8 @@ public class ComandoControladorClienteTest {
         RespuestaCliente respuesta = objectMapper.readValue(jsonResult, RespuestaCliente.class);
 
         Cliente clienteGuardado = repositorioCliente.obtenerPorId(Integer.parseInt(respuesta.getValor().toString()));
-
+        
+        Assertions.assertNotNull(clienteGuardado);
         Assertions.assertEquals("Prueba nombre", clienteGuardado.getNombre());
         Assertions.assertEquals("123456789", clienteGuardado.getNumeroDocumento());
         Assertions.assertEquals("3133333333", clienteGuardado.getCelular());

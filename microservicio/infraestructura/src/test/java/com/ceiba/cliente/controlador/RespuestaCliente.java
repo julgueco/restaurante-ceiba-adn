@@ -1,5 +1,4 @@
-package com.ceiba.factura.controlador;
-
+package com.ceiba.cliente.controlador;
 
 public class RespuestaCliente {
     private Long valor;
