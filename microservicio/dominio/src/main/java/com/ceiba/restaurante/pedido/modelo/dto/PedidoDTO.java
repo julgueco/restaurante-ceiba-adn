@@ -7,6 +7,7 @@ package com.ceiba.restaurante.pedido.modelo.dto;
 import java.math.BigDecimal;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  *
@@ -14,6 +15,7 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
+@NoArgsConstructor
 public class PedidoDTO {
 
     private Integer id;

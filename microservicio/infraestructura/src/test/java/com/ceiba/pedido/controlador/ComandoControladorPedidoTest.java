@@ -43,22 +43,22 @@ public class ComandoControladorPedidoTest {
     @Autowired
     private RepositorioPedido repositorioPedido;
 
-//    @Test
-//    void crearPedidoExitosa() throws Exception {
-//        ComandoCalcularGuardarPedido comandoCalcularGuardarPedidoTestDataBuilder = new ComandoPedidoTestDataBuilder().crearPorDefecto().build();
-//
-//        MvcResult resultado = mocMvc.perform(post("/pedido")
-//                .contentType(MediaType.APPLICATION_JSON)
-//                .content(objectMapper.writeValueAsString(comandoCalcularGuardarPedidoTestDataBuilder)))
-//                .andExpect(status().is2xxSuccessful()).andReturn();
-//
-//        String jsonResult = resultado.getResponse().getContentAsString();
-//        RespuestaPedido respuesta = objectMapper.readValue(jsonResult, RespuestaPedido.class);
-//
-//        Pedido pedidoGuardado = repositorioPedido.obtenerPorId(Integer.parseInt(respuesta.getValor().getId().toString()));
-//
-//        Assertions.assertNotNull(pedidoGuardado);
-//        Assertions.assertEquals(comandoCalcularGuardarPedidoTestDataBuilder.getIdCliente(), pedidoGuardado.getIdCliente());
-//        Assertions.assertEquals(respuesta.getValor().getPrecioTotal(), pedidoGuardado.getPrecioTotal());
-//    }
+    @Test
+    void crearPedidoExitosa() throws Exception {
+        ComandoCalcularGuardarPedido comandoCalcularGuardarPedidoTestDataBuilder = new ComandoPedidoTestDataBuilder().crearPorDefecto().build();
+
+        MvcResult resultado = mocMvc.perform(post("/pedido")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(comandoCalcularGuardarPedidoTestDataBuilder)))
+                .andExpect(status().is2xxSuccessful()).andReturn();
+
+        String jsonResult = resultado.getResponse().getContentAsString();
+        RespuestaPedido respuesta = objectMapper.readValue(jsonResult, RespuestaPedido.class);
+
+        Pedido pedidoGuardado = repositorioPedido.obtenerPorId(Integer.parseInt(respuesta.getValor().getId().toString()));
+
+        Assertions.assertNotNull(pedidoGuardado);
+        Assertions.assertEquals(comandoCalcularGuardarPedidoTestDataBuilder.getIdCliente(), pedidoGuardado.getIdCliente());
+        Assertions.assertTrue(respuesta.getValor().getPrecioTotal().compareTo(pedidoGuardado.getPrecioTotal()) == 0);
+    }
 }
