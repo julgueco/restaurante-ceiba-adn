@@ -58,9 +58,9 @@ public class ComandoControladorDescuentoTest {
         Descuento descuentoGuardado = repositorioDescuento.obtenerPorId(Integer.parseInt(respuesta.getValor().toString()));
 
         Assertions.assertNotNull(descuentoGuardado);
-        Assertions.assertEquals(7, descuentoGuardado.getCantidadDias());
-        Assertions.assertEquals(false, descuentoGuardado.getActivo());
-        Assertions.assertEquals(20, descuentoGuardado.getPorcentaje());
+        Assertions.assertEquals(comandoDescuentoTestDataBuilder.getCantidadDias(), descuentoGuardado.getCantidadDias());
+        Assertions.assertEquals(comandoDescuentoTestDataBuilder.getActivo(), descuentoGuardado.getActivo());
+        Assertions.assertEquals(comandoDescuentoTestDataBuilder.getPorcentaje(), descuentoGuardado.getPorcentaje());
     }
 
     @Test

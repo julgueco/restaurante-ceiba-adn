@@ -1,3 +1,4 @@
+insert into cliente(id, numero_documento, nombre, celular, correo, cantidad_dias) values(1,'987654321', 'Cliente nuevo db', '3133333333', 'pruebacorreo@prueba.com', 5);
 insert into descuento(id, cantidad_dias, porcentaje, activo) values(1,6,10,1);
 insert into menu(id, nombre, activo) values(1,'Menu lunes',1);
 insert into menu(id, nombre, activo) values(2,'Menu jueves',0);
@@ -5,3 +6,5 @@ insert into producto(id, nombre, precio) values(1,'Papa a la francesa',3000);
 insert into producto(id, nombre, precio) values(2,'Carne asada',4000);
 insert into producto(id, nombre, precio) values(3,'Crema de zanahoria',3000);
 insert into menu_producto(id, id_menu, id_producto) values(1,1,1);
+insert into menu_producto(id, id_menu, id_producto) values(2,1,2);
+insert into menu_producto(id, id_menu, id_producto) values(3,1,3);

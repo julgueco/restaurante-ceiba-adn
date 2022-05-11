@@ -7,9 +7,9 @@ package com.ceiba.restaurante.pedido.controlador;
 import com.ceiba.ComandoRespuesta;
 import com.ceiba.restaurante.pedido.comando.ComandoCalcularGuardarPedido;
 import com.ceiba.restaurante.pedido.comando.manejador.ManejadorCalcularGuardarPedido;
+import com.ceiba.restaurante.pedido.modelo.dto.PedidoDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import java.math.BigDecimal;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +35,7 @@ public class ComandoControladorPedido {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     @Operation(summary = "Crear Pedido", description = "Metodo utilizado para crear un pedido y retornar el precio")
-    public ComandoRespuesta<BigDecimal> crear(@RequestBody ComandoCalcularGuardarPedido calcularGuardarPedido) {
+    public ComandoRespuesta<PedidoDTO> crear(@RequestBody ComandoCalcularGuardarPedido calcularGuardarPedido) {
         return this.manejadorCalcularGuardarPedido.ejecutar(calcularGuardarPedido);
     }
 }

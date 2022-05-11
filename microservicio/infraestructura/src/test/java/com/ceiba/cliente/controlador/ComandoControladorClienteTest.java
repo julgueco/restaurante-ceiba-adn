@@ -58,9 +58,9 @@ public class ComandoControladorClienteTest {
         Cliente clienteGuardado = repositorioCliente.obtenerPorId(Integer.parseInt(respuesta.getValor().toString()));
         
         Assertions.assertNotNull(clienteGuardado);
-        Assertions.assertEquals("Prueba nombre", clienteGuardado.getNombre());
-        Assertions.assertEquals("123456789", clienteGuardado.getNumeroDocumento());
-        Assertions.assertEquals("3133333333", clienteGuardado.getCelular());
-        Assertions.assertEquals("pruebacorreo@prueba.com", clienteGuardado.getCorreo());
+        Assertions.assertEquals(comandoClienteTestDataBuilder.getNombre(), clienteGuardado.getNombre());
+        Assertions.assertEquals(comandoClienteTestDataBuilder.getNumeroDocumento(), clienteGuardado.getNumeroDocumento());
+        Assertions.assertEquals(comandoClienteTestDataBuilder.getCelular(), clienteGuardado.getCelular());
+        Assertions.assertEquals(comandoClienteTestDataBuilder.getCorreo(), clienteGuardado.getCorreo());
     }
 }

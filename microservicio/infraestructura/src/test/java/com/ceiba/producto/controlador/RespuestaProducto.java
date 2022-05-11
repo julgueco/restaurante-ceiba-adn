@@ -1,9 +1,9 @@
-package com.ceiba.menu.controlador;
+package com.ceiba.producto.controlador;
 
-public class RespuestaMenu {
+public class RespuestaProducto {
     private Long valor;
 
-    public RespuestaMenu(Long valor) {
+    public RespuestaProducto(Long valor) {
         this.valor = valor;
     }
 

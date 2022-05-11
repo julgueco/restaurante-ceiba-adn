@@ -65,8 +65,8 @@ public class ComandoControladorMenuTest {
         Menu menuGuardado = repositorioMenu.obtenerPorId(Integer.parseInt(respuesta.getValor().toString()));
 
         Assertions.assertNotNull(menuGuardado);
-        Assertions.assertEquals("Menu martes", menuGuardado.getNombre());
-        Assertions.assertEquals(false, menuGuardado.getActivo());
+        Assertions.assertEquals(comandoMenuTestDataBuilder.getNombre(), menuGuardado.getNombre());
+        Assertions.assertEquals(comandoMenuTestDataBuilder.getActivo(), menuGuardado.getActivo());
     }
 
     @Test

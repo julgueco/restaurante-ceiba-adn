@@ -13,6 +13,7 @@ import com.ceiba.restaurante.pedido.modelo.entidad.Pedido;
 import com.ceiba.restaurante.pedido.modelo.entidad.PedidoProducto;
 import com.ceiba.restaurante.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.restaurante.descuento.puerto.repositorio.RepositorioDescuento;
+import com.ceiba.restaurante.pedido.modelo.dto.PedidoDTO;
 import com.ceiba.restaurante.pedido.puerto.repositorio.RepositorioPedido;
 import com.ceiba.restaurante.pedido.puerto.repositorio.RepositorioPedidoProducto;
 import java.math.BigDecimal;
@@ -46,7 +47,7 @@ public class ServicioPedido {
         this.repositorioPedidoProducto = repositorioPedidoProducto;
     }
 
-    public BigDecimal calcularGuardarPedido(Integer idCliente, List<ProductoDTO> listaProductos) {
+    public PedidoDTO calcularGuardarPedido(Integer idCliente, List<ProductoDTO> listaProductos) {
         BigDecimal precioTotal = this.validarPrecioProductos(listaProductos);
         Cliente cliente = this.validarCliente(idCliente);
 
@@ -66,8 +67,8 @@ public class ServicioPedido {
 
         listaProductos.forEach(producto -> this.repositorioPedidoProducto.guardar(new PedidoProducto(idPedido, producto.getId())));
         this.repositorioCliente.actualizarCantidadDias(cliente);
-
-        return pedido.getPrecioTotal();
+        
+        return new PedidoDTO(idPedido, pedido.getPrecioTotal());
     }
 
     private void validarDescuento(Pedido pedido, Cliente cliente) {
