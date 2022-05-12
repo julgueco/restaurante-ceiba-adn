@@ -15,6 +15,6 @@ public interface RepositorioMenu {
     Long guardar(Menu menu);
     List<Menu> obtenerActivos();
     List<Menu> obtenerTodos();
-    void cambiarEstado(Menu menu);
+    Integer cambiarEstado(Menu menu);
     Menu obtenerPorId(Integer id);
 }

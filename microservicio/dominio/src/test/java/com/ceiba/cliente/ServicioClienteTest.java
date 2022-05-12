@@ -1,10 +1,9 @@
 package com.ceiba.cliente;
 
-import com.ceiba.descuento.*;
+import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.restaurante.cliente.modelo.entidad.Cliente;
 import com.ceiba.restaurante.cliente.puerto.repositorio.RepositorioCliente;
 import com.ceiba.restaurante.cliente.servicio.ServicioCliente;
-import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -38,5 +37,27 @@ class ServicioClienteTest {
         Assertions.assertEquals(cliente.getCorreo(), captor.getValue().getCorreo());
         Assertions.assertEquals(cliente.getCantidadDias(), captor.getValue().getCantidadDias());
         Assertions.assertEquals(1l, idClienteCreada);
+    }
+
+    @Test
+    void deberiaGenerarExcepcionDuplicidadCliente() {
+        Cliente cliente = new ClienteTestDataBuilder()
+                .conClientePorDefecto()
+                .reconstruirSinId();
+
+        RepositorioCliente repositorioCliente = Mockito.mock(RepositorioCliente.class);
+        Mockito.when(repositorioCliente.guardar(Mockito.any())).thenReturn(1l);
+        Mockito.when(repositorioCliente.obtenerPorNumeroDocumento(cliente.getNumeroDocumento())).thenReturn(cliente);
+
+        ServicioCliente servicioCliente = new ServicioCliente(repositorioCliente);
+
+        Exception exception = Assertions.assertThrows(ExcepcionDuplicidad.class, () -> {
+            servicioCliente.guardar(cliente);
+        });
+
+        ArgumentCaptor<String> captorObtener = ArgumentCaptor.forClass(String.class);
+        Mockito.verify(repositorioCliente, Mockito.times(1)).obtenerPorNumeroDocumento(captorObtener.capture());
+        Assertions.assertEquals(cliente.getNumeroDocumento(), captorObtener.getValue());
+        Assertions.assertEquals("Cliente ya existe", exception.getMessage());
     }
 }

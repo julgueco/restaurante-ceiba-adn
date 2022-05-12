@@ -29,7 +29,7 @@ public class RepositorioMenuMysql implements RepositorioMenu {
 
     @SqlStatement(namespace = "menu", value = "obtenerActivos")
     private static String sqlObtenerActivos;
-    
+
     @SqlStatement(namespace = "menu", value = "obtenerTodos")
     private static String sqlObtenerTodos;
 
@@ -67,11 +67,11 @@ public class RepositorioMenuMysql implements RepositorioMenu {
     }
 
     @Override
-    public void cambiarEstado(Menu menu) {
+    public Integer cambiarEstado(Menu menu) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", menu.getId());
         paramSource.addValue("activo", menu.getActivo());
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizarEstado, paramSource);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizarEstado, paramSource);
     }
 
     @Override
