@@ -14,6 +14,6 @@ import java.util.List;
 public interface RepositorioDescuento {
     Long guardar(Descuento descuento);
     List<Descuento> obtenerActivos();
-    void cambiarEstado(Descuento descuento);
+    Integer cambiarEstado(Descuento descuento);
     Descuento obtenerPorId(Integer id);
 }

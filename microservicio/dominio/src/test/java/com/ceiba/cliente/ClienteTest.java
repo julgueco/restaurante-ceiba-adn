@@ -1,73 +1,40 @@
-//package com.ceiba.cliente;
-//
-//import com.ceiba.BasePrueba;
-//import com.ceiba.cliente.entidad.Cliente;
-//import com.ceiba.cliente.entidad.TipoCliente;
-//import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
-//import org.junit.jupiter.api.Assertions;
-//import org.junit.jupiter.api.Test;
-//
-//class ClienteTest {
-//
-//    @Test
-//    void deberiaCrearClienteExitoso(){
-//
-//        Cliente cliente = new ClienteTestDataBuilder()
-//                .conTipoCliente(TipoCliente.COMUN)
-//                .conId(1l)
-//                .conNombre("Cliente 1").reconstruir();
-//
-//        Assertions.assertEquals("Cliente 1", cliente.getNombre());
-//        Assertions.assertEquals(TipoCliente.COMUN, cliente.getTipoCliente());
-//        Assertions.assertEquals((Long)1l, cliente.getId());
-//    }
-//
-//    @Test
-//    void reconstruirClienteSinTipoDeberiaLanzarError(){
-//        BasePrueba.assertThrows(()->new ClienteTestDataBuilder()
-//                .conNombre("Cliente 1").reconstruir(),
-//                ExcepcionValorObligatorio.class,
-//                "Tipo de cliente es requerido");
-//    }
-//
-//    @Test
-//    void reconstruirClienteSinNombreDeberiaLanzarError(){
-//        BasePrueba.assertThrows(()->new ClienteTestDataBuilder()
-//                        .conTipoCliente(TipoCliente.COMUN)
-//                        .reconstruir(),
-//                ExcepcionValorObligatorio.class,
-//                "Nombre del cliente es requerido");
-//    }
-//
-//    @Test
-//    void reconstruirClienteSinIdDeberiaLanzarError(){
-//        BasePrueba.assertThrows(()->new ClienteTestDataBuilder()
-//                        .conTipoCliente(TipoCliente.COMUN)
-//                        .conNombre("Cliente 1")
-//                        .reconstruir(),
-//                ExcepcionValorObligatorio.class,
-//                "Id del cliente es requerido");
-//    }
-//
-//    @Test
-//    void deberiaREsponderEsClientePreferenciaCorrectamente(){
-//        Cliente cliente = new ClienteTestDataBuilder()
-//                .conTipoCliente(TipoCliente.PREFERENCIAL)
-//                .conNombre("Cliente 1")
-//                .conId(1l)
-//                .reconstruir();
-//        Assertions.assertTrue(cliente.esTipoPreferencial());
-//        Assertions.assertFalse(cliente.esTipoEspecial());
-//    }
-//
-//    @Test
-//    void deberiaREsponderEsClienteEspecialCorrectamente(){
-//        Cliente cliente = new ClienteTestDataBuilder()
-//                .conTipoCliente(TipoCliente.ESPECIAL)
-//                .conNombre("Cliente 1")
-//                .conId(1l)
-//                .reconstruir();
-//        Assertions.assertFalse(cliente.esTipoPreferencial());
-//        Assertions.assertTrue(cliente.esTipoEspecial());
-//    }
-//}
+package com.ceiba.cliente;
+
+import com.ceiba.restaurante.cliente.modelo.entidad.Cliente;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+class ClienteTest {
+
+    @Test
+    void deberiaReconstruirClienteCorrectamente() {
+
+        Cliente cliente = new ClienteTestDataBuilder()
+                .conClientePorDefecto()
+                .reconstruir();
+
+        Assertions.assertNotNull(cliente);
+        Assertions.assertEquals(1, cliente.getId());
+        Assertions.assertEquals("123456789", cliente.getNumeroDocumento());
+        Assertions.assertEquals("Prueba nombre", cliente.getNombre());
+        Assertions.assertEquals("3133333333", cliente.getCelular());
+        Assertions.assertEquals("pruebacorreo@prueba.com", cliente.getCorreo());
+        Assertions.assertEquals(0, cliente.getCantidadDias());
+    }
+
+    @Test
+    void deberiaReconstruirClienteSinIdCorrectamente() {
+
+        Cliente cliente = new ClienteTestDataBuilder()
+                .conClientePorDefecto()
+                .reconstruirSinId();
+
+        Assertions.assertNotNull(cliente);
+        Assertions.assertEquals(null, cliente.getId());
+        Assertions.assertEquals("123456789", cliente.getNumeroDocumento());
+        Assertions.assertEquals("Prueba nombre", cliente.getNombre());
+        Assertions.assertEquals("3133333333", cliente.getCelular());
+        Assertions.assertEquals("pruebacorreo@prueba.com", cliente.getCorreo());
+        Assertions.assertEquals(0, cliente.getCantidadDias());
+    }
+}

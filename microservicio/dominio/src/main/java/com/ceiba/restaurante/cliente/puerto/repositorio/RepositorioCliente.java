@@ -18,5 +18,5 @@ public interface RepositorioCliente {
 
     Cliente obtenerPorNumeroDocumento(String numeroDocumento);
 
-    void actualizarCantidadDias(Cliente cliente);
+    Integer actualizarCantidadDias(Cliente cliente);
 }

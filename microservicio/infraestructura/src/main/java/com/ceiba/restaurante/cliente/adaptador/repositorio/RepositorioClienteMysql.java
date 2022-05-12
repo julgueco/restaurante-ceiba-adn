@@ -72,10 +72,10 @@ public class RepositorioClienteMysql implements RepositorioCliente {
     }
 
     @Override
-    public void actualizarCantidadDias(Cliente cliente) {
+    public Integer actualizarCantidadDias(Cliente cliente) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", cliente.getId());
         paramSource.addValue("cantidad_dias", cliente.getCantidadDias());
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizarCantidadDias, paramSource);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizarCantidadDias, paramSource);
     }
 }

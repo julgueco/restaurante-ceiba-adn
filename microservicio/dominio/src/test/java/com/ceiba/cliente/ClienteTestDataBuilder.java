@@ -1,36 +1,31 @@
-//package com.ceiba.cliente;
-//
-//import com.ceiba.cliente.entidad.Cliente;
-//import com.ceiba.cliente.entidad.TipoCliente;
-//
-//public class ClienteTestDataBuilder {
-//    private String nombre;
-//    private TipoCliente tipoCliente;
-//    private Long id;
-//
-//    public ClienteTestDataBuilder conClientePorDefecto(){
-//        this.nombre = "Cliente 1";
-//        this.tipoCliente = TipoCliente.COMUN;
-//        this.id = 1l;
-//        return this;
-//    }
-//
-//    public ClienteTestDataBuilder conNombre(String nombre){
-//        this.nombre = nombre;
-//        return this;
-//    }
-//
-//    public ClienteTestDataBuilder conTipoCliente(TipoCliente tipoCliente){
-//        this.tipoCliente = tipoCliente;
-//        return this;
-//    }
-//
-//    public ClienteTestDataBuilder conId(Long id){
-//        this.id = id;
-//        return this;
-//    }
-//
-//    public Cliente reconstruir() {
-//        return Cliente.reconstruir(id, nombre, tipoCliente);
-//    }
-//}
+package com.ceiba.cliente;
+
+import com.ceiba.restaurante.cliente.modelo.entidad.Cliente;
+
+public class ClienteTestDataBuilder {
+
+    private Integer id;
+    private String numeroDocumento;
+    private String nombre;
+    private String celular;
+    private String correo;
+    private Integer cantidadDias;
+
+    public ClienteTestDataBuilder conClientePorDefecto() {
+        this.id = 1;
+        this.numeroDocumento = "123456789";
+        this.nombre = "Prueba nombre";
+        this.celular = "3133333333";
+        this.correo = "pruebacorreo@prueba.com";
+        this.cantidadDias = 0;
+        return this;
+    }
+
+    public Cliente reconstruir() {
+        return new Cliente(id, numeroDocumento, nombre, celular, correo, cantidadDias);
+    }
+
+    public Cliente reconstruirSinId() {
+        return new Cliente(numeroDocumento, nombre, celular, correo, cantidadDias);
+    }
+}

@@ -58,11 +58,11 @@ public class RepositorioDescuentoMysql implements RepositorioDescuento {
     }
 
     @Override
-    public void cambiarEstado(Descuento descuento) {
+    public Integer cambiarEstado(Descuento descuento) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", descuento.getId());
         paramSource.addValue("activo", descuento.getActivo());
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizarEstado, paramSource);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizarEstado, paramSource);
     }
 
     @Override
