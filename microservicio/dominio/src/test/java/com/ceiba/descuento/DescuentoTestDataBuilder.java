@@ -20,4 +20,8 @@ public class DescuentoTestDataBuilder {
     public Descuento reconstruir() {
         return new Descuento(id, cantidadDias, porcentaje, activo);
     }
+
+    public Descuento reconstruirSinId() {
+        return new Descuento(cantidadDias, porcentaje, activo);
+    }
 }
